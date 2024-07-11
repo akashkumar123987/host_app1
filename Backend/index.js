@@ -9,13 +9,13 @@ import userRoute from "./route/user.route.js";
 
 const app = express();
 
-app.use(cors(
-    {
-        origin:["https://deploy-mern-1whq.vercel.app"],
-        methods:["POST","GET"],
-        credentials:true
-    }
-));
+app.use(cors());
+    // {
+    //     origin:["https://deploy-mern-1whq.vercel.app"],
+    //     methods:["POST","GET"],
+    //     credentials:true
+    // }
+
 app.use(express.json());
 
 dotenv.config();
