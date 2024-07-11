@@ -9,7 +9,13 @@ import userRoute from "./route/user.route.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin:["https://deploy-mern-1whq.vercel.app"],
+        methods:["POST","GET"],
+        credentials:true
+    }
+));
 app.use(express.json());
 
 dotenv.config();
@@ -33,13 +39,13 @@ try {
 app.use("/book", bookRoute);
 app.use("/user", userRoute);
 
-if(process.env.NODE_ENV==='production'){
-    const dirPath=path.resolve();
-    app.use(express.static("Frontend/dist"));
-    app.get("*",(res,req) =>{
-        res.sendFile(path.resolve(dirPath,"Frontend","dist","index.html"));
-    })
-}
+// if(process.env.NODE_ENV==='production'){
+//     const dirPath=path.resolve();
+//     app.use(express.static("Frontend/dist"));
+//     app.get("*",(res,req) =>{
+//         res.sendFile(path.resolve(dirPath,"Frontend","dist","index.html"));
+//     })
+// }
 
 
 app.listen(PORT, () => {
